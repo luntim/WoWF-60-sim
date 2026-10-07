@@ -1,0 +1,896 @@
+[
+ {
+  "id": 25300,
+  "name": "Backstab",
+  "rank": "Rank 9",
+  "level": 60,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Value decreased by 33.3%"
+  ],
+  "tooltip": "Backstab60 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 60\nBackstab the target, causing 150% weapon damage plus 150 to the target. \u00a0Must be behind the target. \u00a0Requires a dagger in the main hand. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 8643,
+  "name": "Kidney Shot",
+  "rank": "Rank 2",
+  "level": 50,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Kidney ShotRank 2\n25 Energy / 1 to 5 Combo Points\nMelee Range\nInstant\n20 sec cooldown\nRequires Rogue\nRequires level 50\nRequires Melee WeaponFinishing move that stuns the target. \u00a0Lasts longer per combo point:\n \u00a0 1 point \u00a0: 2 seconds\n \u00a0 2 points: 3 seconds\n \u00a0 3 points: 4 seconds\n \u00a0 4 points: 5 seconds\n \u00a0 5 points: 6 seconds"
+ },
+ {
+  "id": 11290,
+  "name": "Garrote",
+  "rank": "Rank 6",
+  "level": 54,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Garrote50 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 54\nRequires StealthGarrote the enemy, causing 552 damage over 18 sec, increased by your Attack Power. \u00a0Must be stealthed and behind the target. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 921,
+  "name": "Pick Pocket",
+  "rank": "",
+  "level": 4,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Pick Pocket\nMelee Range\nInstantRequires Rogue\nRequires level 4\nRequires StealthPick the target's pocket."
+ },
+ {
+  "id": 1725,
+  "name": "Distract",
+  "rank": "",
+  "level": 22,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Lasts 10 sec instead of none",
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Distract30 Energy\n30 yd range\nInstant\n30 sec cooldown\nRequires Rogue\nRequires level 22\nThrows a distraction, attracting the attention of all nearby enemies and reducing their Stealth detection as if they were 1 level lower for 10 seconds. Does not break stealth."
+ },
+ {
+  "id": 11294,
+  "name": "Sinister Strike",
+  "rank": "Rank 8",
+  "level": 54,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Sinister Strike45 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 54\nRequires Melee WeaponAn instant strike that causes 68 damage in addition to your normal weapon damage. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 1769,
+  "name": "Kick",
+  "rank": "Rank 4",
+  "level": 58,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "KickRank 4\n25 Energy\nMelee Range\nInstant\n10 sec cooldown\nRequires Rogue\nRequires level 58\nA quick kick that injures a single foe for 80 damage. \u00a0It also interrupts spellcasting and prevents any spell in that school from being cast for 5 sec."
+ },
+ {
+  "id": 11286,
+  "name": "Gouge",
+  "rank": "Rank 5",
+  "level": 60,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "GougeRank 5\n45 Energy\nMelee Range\nInstant\n10 sec cooldown\nRequires Rogue\nRequires level 60\nRequires Melee WeaponCauses 75 damage, stops your attack, and incapacitates the target for 4 sec. \u00a0The target must be facing you. \u00a0Any damage taken will break the effect. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 1787,
+  "name": "Stealth",
+  "rank": "Rank 4",
+  "level": 60,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "StealthRank 4\nInstant\n10 sec cooldown\nRequires Rogue\nRequires level 60\nAllows the rogue to sneak around, but reduces your speed by 30%. \u00a0Lasts until cancelled."
+ },
+ {
+  "id": 1833,
+  "name": "Cheap Shot",
+  "rank": "",
+  "level": 26,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Cheap Shot60 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 26\nRequires Melee Weapon\nRequires StealthStuns the target for 4 sec. \u00a0Must be stealthed. \u00a0Awards 2 combo points."
+ },
+ {
+  "id": 1842,
+  "name": "Disarm Trap",
+  "rank": "",
+  "level": 30,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Disarm Trap\n5 yd range\n2 sec castRequires Rogue\nRequires level 30\nTools:\nThieves' Tools\nSneak up on the trap in order to disarm it. \u00a0Don't get too close or the trap will go off."
+ },
+ {
+  "id": 1857,
+  "name": "Vanish",
+  "rank": "Rank 2",
+  "level": 42,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "VanishRank 2\nInstant\n5 min cooldown\nRequires Rogue\nRequires level 42\nReagents:\nFlash Powder\nAllows the rogue to vanish from sight, entering an improved stealth mode for 10 sec. \u00a0Also breaks movement impairing effects. More effective than Vanish (Rank 1)."
+ },
+ {
+  "id": 1860,
+  "name": "Safe Fall",
+  "rank": "Passive",
+  "level": 40,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Safe FallRequires Rogue\nRequires level 40\nReduces damage from falling."
+ },
+ {
+  "id": 11275,
+  "name": "Rupture",
+  "rank": "Rank 6",
+  "level": 60,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Values decreased by up to 41.6%"
+  ],
+  "tooltip": "Rupture25 Energy / 1 to 5 Combo Points\nMelee Range\nInstantRequires Rogue\nRequires level 60\nRequires Melee WeaponFinishing move that causes damage over time, increased by your Attack Power. \u00a0Lasts longer per combo point:\n \u00a0 1 point \u00a0: 159 damage over 8 secs\n \u00a0 2 points: 222 damage over 10 secs\n \u00a0 3 points: 295 damage over 12 secs\n \u00a0 4 points: 377 damage over 14 secs\n \u00a0 5 points: 469 damage over 16 secs"
+ },
+ {
+  "id": 25302,
+  "name": "Feint",
+  "rank": "Rank 5",
+  "level": 60,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "FeintRank 5\n20 Energy\nMelee Range\nInstant\n10 sec cooldown\nRequires Rogue\nRequires level 60\nPerforms a feint, causing no damage but lowering your threat by a large amount, making the enemy less likely to attack you."
+ },
+ {
+  "id": 11297,
+  "name": "Sap",
+  "rank": "Rank 3",
+  "level": 48,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "SapRank 3\n65 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 48\nRequires Melee Weapon\nRequires StealthIncapacitates the target for up to 45 sec. Only works on Humanoids that are not in combat. \u00a0Any damage taken will break the effect. Only 1 target may be sapped at a time. Does not break Stealth."
+ },
+ {
+  "id": 2094,
+  "name": "Blind",
+  "rank": "",
+  "level": 34,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Blind30 Energy\n10 yd range\nInstant\n5 min cooldown\nRequires Rogue\nRequires level 34\nReagents:\nBlinding Powder\nBlinds the target, causing it to wander disoriented for up to 10 sec. \u00a0Any damage caused will remove the effect."
+ },
+ {
+  "id": 31016,
+  "name": "Eviscerate",
+  "rank": "Rank 9",
+  "level": 60,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Eviscerate35 Energy / 1 to 5 Combo Points\nMelee Range\nInstantRequires Rogue\nRequires level 60\nRequires Melee WeaponFinishing move that causes damage per combo point, increased by Attack Power:\n \u00a0 1 point \u00a0: [54 + (170 * (1 * 1))]-[162 + (170 * (1 * 1))] damage\n \u00a0 2 points: [54 + (2 * 170 * (1 * 1))]-[162 + (2 * 170 * (1 * 1))] damage\n \u00a0 3 points: [54 + (3 * 170 * (1 * 1))]-[162 + (3 * 170 * (1 * 1))] damage\n \u00a0 4 points: [54 + (4 * 170 * (1 * 1))]-[162 + (4 * 170 * (1 * 1))] damage\n \u00a0 5 points: [54 + (5 * 170 * (1 * 1))]-[162 + (5 * 170 * (1 * 1))] damage"
+ },
+ {
+  "id": 2836,
+  "name": "Detect Traps",
+  "rank": "Passive",
+  "level": 24,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Detect TrapsRequires Rogue\nRequires level 24\nGreatly increased chance to detect traps."
+ },
+ {
+  "id": 11305,
+  "name": "Sprint",
+  "rank": "Rank 3",
+  "level": 58,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "SprintRank 3\nInstant\n5 min cooldown\nRequires Rogue\nRequires level 58\nIncreases the rogue's movement speed by 70% for 15 sec. \u00a0Does not break stealth."
+ },
+ {
+  "id": 6774,
+  "name": "Slice and Dice",
+  "rank": "Rank 2",
+  "level": 42,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Slice and DiceRank 2\n25 Energy / 1 to 5 Combo Points\n100 yd range\nInstantRequires Rogue\nRequires level 42\nFinishing move that increases melee attack speed by 30%. \u00a0Lasts longer per combo point:\n \u00a0 1 point \u00a0: (9 * 1) seconds\n \u00a0 2 points: (12 * 1) seconds\n \u00a0 3 points: (15 * 1) seconds\n \u00a0 4 points: (18 * 1) seconds\n \u00a0 5 points: (21 * 1) seconds"
+ },
+ {
+  "id": 5277,
+  "name": "Evasion",
+  "rank": "",
+  "level": 8,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "EvasionInstant\n5 min cooldown\nRequires Rogue\nRequires level 8\nThe rogue's dodge chance will increase by 50% for 15 sec."
+ },
+ {
+  "id": 11198,
+  "name": "Expose Armor",
+  "rank": "Rank 5",
+  "level": 56,
+  "talent": false,
+  "status": "updated",
+  "changes": [
+   "Values increased by 32.4%"
+  ],
+  "tooltip": "Expose ArmorRank 5\n25 Energy / 1 to 5 Combo Points\nMelee Range\nInstantRequires Rogue\nRequires level 56\nRequires Melee WeaponFinishing move that exposes the target for 30 sec, reducing Armor per combo point:\n \u00a0 1 point \u00a0: 450 Armor\n \u00a0 2 points: 900 Armor\n \u00a0 3 points: 1350 Armor\n \u00a0 4 points: 1800 Armor\n \u00a0 5 points: 2250 Armor"
+ },
+ {
+  "id": 11269,
+  "name": "Ambush",
+  "rank": "Rank 6",
+  "level": 58,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Ambush60 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 58\nRequires StealthAmbush the target, causing 250% weapon damage plus 290 to the target. \u00a0Must be stealthed and behind the target. \u00a0Requires a dagger in the main hand. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 14094,
+  "name": "Improved Sap",
+  "rank": "Rank 2",
+  "level": 0,
+  "talent": false,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Improved SapRequires Rogue\nGives you a 60% chance to return to stealth mode after using your Sap ability.\n (Proc chance: 60%)"
+ },
+ {
+  "id": 1241584,
+  "name": "Mutilate",
+  "rank": "Rank 4",
+  "level": 60,
+  "talent": false,
+  "status": "new",
+  "changes": [],
+  "tooltip": "MutilateRank 4\n60 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 60\nInstantly attacks with both weapons for 75% weapon damage plus an additional 50 with each weapon. Damage increased by 20% against Poisoned targets. Awards 2 Combo Points."
+ },
+ {
+  "id": 1310709,
+  "name": "Coup de Grace",
+  "rank": "",
+  "level": 30,
+  "talent": false,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Coup de Grace\n100 yd rangeRequires Rogue\nRequires level 30\nIncreases the damage of your Eviscerate ability against targets afflicted with your Deadly Poison by 2% per application."
+ },
+ {
+  "id": 13705,
+  "name": "Precision",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "3 ranks instead of 5",
+   "Wording changed"
+  ],
+  "tooltip": "PrecisionTalent\nRequires Rogue\nRequires Melee WeaponImproves your chance to hit by 1%."
+ },
+ {
+  "id": 13712,
+  "name": "Lightning Reflexes",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Lightning ReflexesTalent\nRequires Rogue\nIncreases your Dodge chance by 5%."
+ },
+ {
+  "id": 13713,
+  "name": "Deflection",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "3 ranks instead of 5",
+   "Value increased by 100%"
+  ],
+  "tooltip": "DeflectionTalent\nRequires Rogue\nIncreases your Parry chance by 1%."
+ },
+ {
+  "id": 13715,
+  "name": "Dual Wield Specialization",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Value decreased by 50%",
+   "Wording changed"
+  ],
+  "tooltip": "Dual Wield SpecializationTalent\nRequires Rogue\nIncreases the damage done by your off-hand weapon by 50%."
+ },
+ {
+  "id": 13732,
+  "name": "Improved Sinister Strike",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Improved Sinister StrikeTalent\nRequires Rogue\nReduces the Energy cost of your Sinister Strike ability by 5."
+ },
+ {
+  "id": 13741,
+  "name": "Improved Gouge",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Improved GougeTalent\nRequires Rogue\nIncreases the duration of your Gouge ability by 2 sec."
+ },
+ {
+  "id": 13742,
+  "name": "Endurance",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "EnduranceTalent\nRequires Rogue\nReduces the cooldown of your Sprint and Evasion abilities by 60%."
+ },
+ {
+  "id": 13743,
+  "name": "Improved Sprint",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Improved SprintTalent\nRequires Rogue\nGives a 100% chance to remove all movement impairing effects when you activate your Sprint ability."
+ },
+ {
+  "id": 13750,
+  "name": "Adrenaline Rush",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Adrenaline RushTalent\nInstant\n5 min cooldown\nRequires Rogue\nIncreases your Energy regeneration rate by 100% for 15 sec."
+ },
+ {
+  "id": 13754,
+  "name": "Improved Kick",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Improved KickTalent\nRequires Rogue\nGives your Kick ability a 100% chance to Silence the target for 2 sec."
+ },
+ {
+  "id": 13877,
+  "name": "Blade Flurry",
+  "rank": "",
+  "level": 1,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Blade FlurryTalent\n25 EnergyInstant\n2 min cooldown\nRequires Rogue\nRequires level 1\nIncreases your melee attack speed by 20% and your melee attacks strike an additional nearby opponent. Lasts 15 sec."
+ },
+ {
+  "id": 13958,
+  "name": "Master of Deception",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "3 ranks instead of 5",
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Master of DeceptionTalent\nRequires Rogue\nReduces the chance enemies have to detect you while in Stealth mode as if you were 3 levels higher."
+ },
+ {
+  "id": 13960,
+  "name": "Hack and Slash",
+  "rank": "",
+  "level": 1,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Renamed from Sword Specialization",
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Hack and SlashTalent\nRequires Rogue\nRequires level 1\nGives your melee weapon attacks a benefit depending on the weapon.\n \u00a0 \u00a0Axe/Sword: Your successful\n \u00a0 \u00a0melee attacks have a 5% chance\n \u00a0 \u00a0to trigger an extra attack on the \n \u00a0 \u00a0target.\n \u00a0 \u00a0Dagger/Fist: Increases your\n \u00a0 \u00a0critical strike chance by 5%.\n \u00a0 \u00a0Mace: Your attacks ignore 15% of\n \u00a0 \u00a0your target's armor.\n (Proc chance: 1%, 200ms cooldown)"
+ },
+ {
+  "id": 13975,
+  "name": "Camouflage",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "2 sec instead of 1 sec",
+   "Wording changed"
+  ],
+  "tooltip": "CamouflageTalent\nRequires Rogue\nReduces your speed penalty from your Stealth ability by 15% and reduces its cooldown by 6 sec."
+ },
+ {
+  "id": 13976,
+  "name": "Initiative",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Value increased by 32%"
+  ],
+  "tooltip": "InitiativeTalent\nRequires Rogue\nGives you a 100% chance to add an additional combo point to your target when using your Ambush, Garrote, or Cheap Shot ability."
+ },
+ {
+  "id": 13981,
+  "name": "Elusiveness",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "ElusivenessTalent\nRequires Rogue\nReduces the cooldown of your Vanish and Blind abilities by 90 sec."
+ },
+ {
+  "id": 13983,
+  "name": "Setup",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Value increased by 120%",
+   "Wording changed"
+  ],
+  "tooltip": "SetupTalent\nRequires Rogue\nGives you a 0% chance to add a Combo Point to your target after Dodging one of their attacks or fully resisting one of their spells.\n (1s cooldown)"
+ },
+ {
+  "id": 14057,
+  "name": "Opportunity",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "2 ranks instead of 5",
+   "Value increased by 25%",
+   "Wording changed"
+  ],
+  "tooltip": "OpportunityTalent\nRequires Rogue\nIncreases the damage dealt by your Backstab, Garrote, Ambush, and Mutilate abilities by 10%."
+ },
+ {
+  "id": 14079,
+  "name": "Improved Ambush",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Improved AmbushTalent\nRequires Rogue\nIncreases the critical strike chance of your Ambush ability by 45%."
+ },
+ {
+  "id": 14082,
+  "name": "Dirty Deeds",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Dirty DeedsTalent\nRequires Rogue\nReduces the Energy cost of your Cheap Shot and Garrote abilities by 20, and your Garrote ability no longer requires you to be behind your target."
+ },
+ {
+  "id": 14084,
+  "name": "Improved Distract",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Improved DistractTalent\nRequires Rogue\nIncreases the radius of your Distract ability by 5 yds, and further reduces the Stealth detection of distracted enemies as though they were an additional 2 levels lower."
+ },
+ {
+  "id": 14113,
+  "name": "Improved Poisons",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Improved PoisonsTalent\nRequires Rogue\nIncreases the chance to apply Poisons to your target by 10%, and gives Poison applications a 50% chance to not consume a charge."
+ },
+ {
+  "id": 14128,
+  "name": "Lethality",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Value decreased by 33.3%",
+   "Wording changed"
+  ],
+  "tooltip": "LethalityTalent\nRequires Rogue\nIncreases the critical strike damage bonus of your Sinister Strike, Gouge, Backstab, Mutilate, Ghostly Strike, and Hemorrhage abilities by 6%."
+ },
+ {
+  "id": 14138,
+  "name": "Malice",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "MaliceTalent\nRequires Rogue\nIncreases your critical strike chance with all attacks and Poisons by 5%."
+ },
+ {
+  "id": 14144,
+  "name": "Remorseless Attacks",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Remorseless AttacksTalent\nRequires Rogue\nAfter killing a non-trivial enemy, gives you a 0% increased critical strike chance on your next Sinister Strike, Backstab, Ambush, Mutilate, or Ghostly Strike. Lasts 20 sec."
+ },
+ {
+  "id": 14156,
+  "name": "Ruthlessness",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "RuthlessnessTalent\nRequires Rogue\nGives your finishing moves a 60% chance to add a Combo Point to your target.\n (500ms cooldown)"
+ },
+ {
+  "id": 14158,
+  "name": "Murder",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "MurderTalent\nRequires Rogue\nIncreases all damage dealt by 4% against Humanoid and Giant targets."
+ },
+ {
+  "id": 14162,
+  "name": "Improved Eviscerate",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Value increased by 40%"
+  ],
+  "tooltip": "Improved EviscerateTalent\nRequires Rogue\nIncreases the damage done by your Eviscerate ability by 20%."
+ },
+ {
+  "id": 14165,
+  "name": "Improved Slice and Dice",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Improved Slice and DiceTalent\nRequires Rogue\nIncreases the duration of your Slice and Dice ability by 15%."
+ },
+ {
+  "id": 14168,
+  "name": "Improved Expose Armor",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Improved Expose ArmorTalent\nRequires Rogue\nReduces the Energy cost of your Expose Armor ability by 10, and refunds 2 Combo Points when cast with 5 Combo Points.\n (500ms cooldown)"
+ },
+ {
+  "id": 14171,
+  "name": "Serrated Blades",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Serrated BladesTalent\nRequires Rogue\nCauses your attacks to ignore 9% of your target's Armor and increases the damage dealt by your Rupture ability by 30%."
+ },
+ {
+  "id": 14174,
+  "name": "Improved Kidney Shot",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "2 ranks instead of 3",
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Improved Kidney ShotTalent\nRequires Rogue\nEnemies Stunned by your Kidney Shot ability take 10% increased damage from your poisons and attacks."
+ },
+ {
+  "id": 14177,
+  "name": "Cold Blood",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Cold BloodTalent\nInstant\n3 min cooldown\nRequires Rogue\nWhen activated, increases the critical strike chance of your next Sinister Strike, Backstab, Ambush, Eviscerate, or Mutilate by 100%."
+ },
+ {
+  "id": 14179,
+  "name": "Relentless Strikes",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Relentless StrikesTalent\nRequires Rogue\nYour finishing moves have a 0% chance per Combo Point to restore 25 Energy."
+ },
+ {
+  "id": 14183,
+  "name": "Premeditation",
+  "rank": "",
+  "level": 20,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Lasts 20 sec instead of 10 sec",
+   "Wording changed"
+  ],
+  "tooltip": "PremeditationTalent\n20 yd rangeInstant\n2 min cooldown\nRequires Rogue\nRequires level 20\nAdds 2 Combo Points to your target. You must add to or use those combo points within 20 sec or the combo points are lost."
+ },
+ {
+  "id": 14185,
+  "name": "Preparation",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "PreparationTalent\nInstant\n10 min cooldown\nRequires Rogue\nWhen activated, this ability immediately finishes the cooldown on your other Rogue abilities."
+ },
+ {
+  "id": 14186,
+  "name": "Seal Fate",
+  "rank": "",
+  "level": 1,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "Seal FateTalent\nRequires Rogue\nRequires level 1\nYour critical strikes from abilities that add Combo Points have a 0% chance to add an additional Combo Point.\n (500ms cooldown)"
+ },
+ {
+  "id": 14251,
+  "name": "Riposte",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "RiposteTalent\n10 Energy\nMelee Range\nInstant\n6 sec cooldown\nRequires Rogue\nA strike that becomes active after parrying an opponent's attack. \u00a0This attack deals 150% weapon damage and disarms the target for 6 sec."
+ },
+ {
+  "id": 14278,
+  "name": "Ghostly Strike",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Ghostly StrikeTalent\n40 Energy\nMelee Range\nInstant\n20 sec cooldown\nRequires Rogue\nRequires Melee WeaponA strike that deals 125% (180% if a Dagger is equipped in your Main Hand) weapon damage and increases your chance to dodge by 15% for 7 sec. \u00a0Awards 1 combo point."
+ },
+ {
+  "id": 14983,
+  "name": "Vigor",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "2 ranks instead of 1",
+   "Value decreased by 50%"
+  ],
+  "tooltip": "VigorTalent\nRequires Rogue\nIncreases your maximum Energy by 10."
+ },
+ {
+  "id": 16511,
+  "name": "Hemorrhage",
+  "rank": "",
+  "level": 30,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "HemorrhageTalent\n35 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 30\nRequires Melee WeaponAn instant strike that deals 100% weapon damage (145% if a Dagger is equipped) and causes the target to take 15% increased Rupture damage from the Rogue. Lasts 15 sec. Awards 1 Combo Point."
+ },
+ {
+  "id": 16513,
+  "name": "Vile Poisons",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "unchanged",
+  "changes": [],
+  "tooltip": "Vile PoisonsTalent\nRequires Rogue\nIncreases the damage dealt by your poisons by 20% and gives your poisons an additional 40% chance to resist dispel effects."
+ },
+ {
+  "id": 18427,
+  "name": "Aggression",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Wording changed"
+  ],
+  "tooltip": "AggressionTalent\nRequires Rogue\nIncreases the damage of your Sinister Strike, Backstab, and Eviscerate abilities by 2%."
+ },
+ {
+  "id": 30894,
+  "name": "Heightened Senses",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Heightened SensesTalent\nRequires Rogue\nIncreases your Stealth detection as if you were 3 levels higher and reduces your chance to be hit by spells and ranged attacks by 6%."
+ },
+ {
+  "id": 30919,
+  "name": "Weapon Expertise",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "updated",
+  "changes": [
+   "Numbers and wording changed"
+  ],
+  "tooltip": "Weapon ExpertiseTalent\nRequires Rogue\nReduces the chance for your attacks to be Dodged or Parried by 2%."
+ },
+ {
+  "id": 462708,
+  "name": "Cutthroat",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "CutthroatTalent\nRequires Rogue\nYour Backstab has a 15% chance to cause your next Ambush within 10 sec to not require Stealth."
+ },
+ {
+  "id": 1224716,
+  "name": "Puncturing Wounds",
+  "rank": "",
+  "level": 1,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Puncturing WoundsTalent\nRequires Rogue\nRequires level 1\nIncreases the critical strike chance of your Backstab by 30% and your Mutilate by 15%, and gives Backstab a 45% chance to add an additional Combo Point."
+ },
+ {
+  "id": 1224782,
+  "name": "Dirty Tricks",
+  "rank": "",
+  "level": 1,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Dirty TricksTalent\nRequires Rogue\nRequires level 1\nReduces the Energy cost of your Sap and Blind abilities by 50%."
+ },
+ {
+  "id": 1310703,
+  "name": "Venom",
+  "rank": "",
+  "level": 40,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "VenomTalent\n25 Energy / 1 to 5 Combo Points\n100 yd range\nInstantRequires Rogue\nRequires level 40\nRequires Melee WeaponFinishing move that increases the damage of your Poisons by 30% and your chance to apply Poisons by 10%. Lasts longer per combo point:\n \u00a0 1 point \u00a0: 9 sec\n \u00a0 2 points: 12 sec\n \u00a0 3 points: 15 sec\n \u00a0 4 points: 18 sec\n \u00a0 5 points: 21 sec"
+ },
+ {
+  "id": 1310707,
+  "name": "Mutilate",
+  "rank": "Rank 1",
+  "level": 30,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "MutilateTalent\nRank 1\n60 Energy\nMelee Range\nInstantRequires Rogue\nRequires level 30\nInstantly attacks with both weapons for 75% weapon damage plus an additional 17 with each weapon. Damage increased by 20% against Poisoned targets. Awards 2 Combo Points."
+ },
+ {
+  "id": 1310711,
+  "name": "Flawless Execution",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Flawless ExecutionTalent\nRequires Rogue\nReduces the Energy cost of your Eviscerate ability by 10."
+ },
+ {
+  "id": 1310721,
+  "name": "Thousand Cuts",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "Thousand CutsTalent\nRequires Rogue\nWhen your Rupture ability deals periodic damage, the Energy cost of your next Hemorrhage or Backstab ability within 10 sec is reduced by 3, stacking up to 5 times.\n (1.9s cooldown)"
+ },
+ {
+  "id": 1310728,
+  "name": "Quietus",
+  "rank": "",
+  "level": 0,
+  "talent": true,
+  "status": "new",
+  "changes": [],
+  "tooltip": "QuietusTalent\nRequires Rogue\nYour Sinister Strike, Ghostly Strike, and Hemorrhage abilities cause 10% more damage against targets below 35% health."
+ }
+]

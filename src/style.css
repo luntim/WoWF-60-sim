@@ -1,0 +1,413 @@
+:root {
+  --bg: #111318;
+  --panel: #181b22;
+  --border: #2a2f3a;
+  --text: #d5d9e2;
+  --muted: #8a90a0;
+  --accent: #f2d23c;
+  --input: #0f1116;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+}
+
+#game {
+  flex: 1;
+  min-width: 0;
+}
+
+#panel {
+  width: 280px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 12px 14px 20px;
+  box-sizing: border-box;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  font-size: 13px;
+}
+
+#panel h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+#panel fieldset {
+  margin: 0 0 10px;
+  padding: 6px 10px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+#panel legend {
+  padding: 0 4px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#panel label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+#panel label.check {
+  justify-content: flex-start;
+}
+
+#panel input:not([type="checkbox"]),
+#panel select {
+  width: 110px;
+  padding: 3px 6px;
+  background: var(--input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+}
+
+#panel button {
+  width: 100%;
+  padding: 6px;
+  background: var(--input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+#panel button:hover {
+  border-color: var(--muted);
+}
+
+#panel details {
+  margin-top: 12px;
+}
+
+#panel summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#panel ul {
+  margin: 6px 0;
+  padding-left: 16px;
+  color: var(--muted);
+}
+
+#panel li.tree {
+  list-style: none;
+  margin-left: -16px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+#panel .note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  #app {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #game {
+    height: 60vh;
+  }
+
+  #panel {
+    width: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}
+
+#panel .keybinds {
+  margin: 8px 0;
+}
+
+#panel .keybind {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 3px 0;
+}
+
+#panel .keybind img {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+#panel .keybind span {
+  flex: 1;
+}
+
+#panel .keybind button {
+  width: 96px;
+  padding: 3px 6px;
+}
+
+#panel .keybind button.listening {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#panel .talent-summary {
+  margin: 2px 0 8px;
+  color: var(--text);
+}
+
+/* ---- Talent picker ---- */
+
+.talent-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(5, 6, 10, 0.72);
+}
+
+.talent-modal[hidden] {
+  display: none;
+}
+
+.talent-window {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding: 14px 18px 10px;
+  box-sizing: border-box;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+}
+
+.talent-window header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.talent-window h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.talent-points {
+  flex: 1;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.talent-window select,
+.talent-window header button {
+  padding: 4px 8px;
+  background: var(--input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.talent-window header button:hover {
+  border-color: var(--muted);
+}
+
+.talent-window .talent-close {
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 9px;
+}
+
+.talent-trees {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.talent-tree {
+  padding: 8px 14px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--tree-tint), transparent 70%), var(--input);
+}
+
+.tree-assassination {
+  --tree-tint: rgba(70, 140, 70, 0.18);
+}
+
+.tree-combat {
+  --tree-tint: rgba(160, 60, 50, 0.18);
+}
+
+.tree-subtlety {
+  --tree-tint: rgba(90, 80, 160, 0.2);
+}
+
+.talent-tree h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.talent-tree h3 span {
+  color: var(--accent);
+}
+
+.talent-grid {
+  position: relative;
+}
+
+.talent {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #3a3f4a;
+  border-radius: 6px;
+  background: #000;
+  cursor: pointer;
+}
+
+.talent img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.talent.locked img {
+  filter: grayscale(1) brightness(0.5);
+}
+
+.talent.available {
+  border-color: #3fae5a;
+}
+
+.talent.learned {
+  border-color: #3fae5a;
+  box-shadow: 0 0 6px rgba(63, 174, 90, 0.6);
+}
+
+.talent.maxed {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(242, 210, 60, 0.5);
+}
+
+.talent-rank {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  padding: 0 4px;
+  background: #0b0c10;
+  border: 1px solid #3a3f4a;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.talent.available .talent-rank,
+.talent.learned .talent-rank {
+  color: #6fe08a;
+}
+
+.talent.maxed .talent-rank {
+  color: var(--accent);
+}
+
+.talent-arrow {
+  position: absolute;
+  width: 4px;
+  background: #3a3f4a;
+}
+
+.talent-arrow::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  bottom: -2px;
+  border: 6px solid transparent;
+  border-top-color: #3a3f4a;
+}
+
+.talent-arrow.met {
+  background: var(--accent);
+}
+
+.talent-arrow.met::after {
+  border-top-color: var(--accent);
+}
+
+.talent-hint {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.talent-tooltip {
+  position: fixed;
+  z-index: 101;
+  max-width: 280px;
+  padding: 8px 10px;
+  background: #0d0f16;
+  border: 1px solid #5a6070;
+  border-radius: 4px;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.talent-tooltip p {
+  margin: 0 0 4px;
+}
+
+.talent-tooltip .name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.talent-tooltip .rank,
+.talent-tooltip .next {
+  color: var(--muted);
+}
+
+.talent-tooltip .req {
+  color: #ff5050;
+}
+
+.talent-tooltip .note {
+  color: #6fb7e0;
+}
