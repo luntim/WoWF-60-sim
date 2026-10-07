@@ -222,4 +222,57 @@ describe("Combat", () => {
     c.use("preparation");
     expect(c.cooldownRemaining("thistleTea")).toBe(300);
   });
+
+  it("needs melee range, facing, and (for Backstab) being behind", () => {
+    const c = new Combat(config(), constant(0.99));
+    c.setPositioning({ distance: 8, facing: true, behind: true });
+    expect(c.use("mutilate")).toBe("outOfRange");
+    c.setPositioning({ distance: 3, facing: false, behind: true });
+    expect(c.use("mutilate")).toBe("notFacing");
+    c.setPositioning({ distance: 3, facing: true, behind: false });
+    expect(c.use("backstab")).toBe("notBehind");
+    expect(c.use("mutilate")).toBe("ok"); // Mutilate has no positional requirement in Forever
+  });
+
+  it("Dirty Deeds lets Garrote be used from the front", () => {
+    const c = new Combat(config({}, PRESETS[2].ranks), constant(0.99));
+    c.setPositioning({ distance: 3, facing: true, behind: false });
+    c.use("stealth");
+    expect(c.use("garrote")).toBe("ok");
+  });
+
+  it("pauses auto-attacks out of range and resumes when back", () => {
+    const c = new Combat(config(), constant(0.99));
+    c.use("sinisterStrike");
+    c.setPositioning({ distance: 10, facing: true, behind: true });
+    const before = c.meter.rows.get("melee")?.hits ?? 0;
+    step(c, 5);
+    expect(c.meter.rows.get("melee")?.hits ?? 0).toBe(before);
+    c.setPositioning({ distance: 3, facing: true, behind: true });
+    step(c, 2);
+    expect(c.meter.rows.get("melee")?.hits ?? 0).toBeGreaterThan(before);
+  });
+
+  it("Stealth slows movement, Camouflage softens it", () => {
+    const plain = new Combat(config(), constant(0.99));
+    plain.use("stealth");
+    expect(plain.speedMultiplier).toBeCloseTo(0.7);
+    const camo = new Combat(config({}, PRESETS[2].ranks), constant(0.99)); // Camouflage 4/5
+    camo.use("stealth");
+    expect(camo.speedMultiplier).toBeCloseTo(0.82);
+  });
+
+  it("needs a target for attacks; clearing it stops auto-attacks", () => {
+    const c = new Combat(config(), constant(0.99));
+    c.setTargeted(false);
+    expect(c.use("mutilate")).toBe("noTarget");
+    expect(c.use("sliceAndDice")).toBe("noComboPoints"); // self buffs don't need a target
+    c.setTargeted(true);
+    c.use("mutilate");
+    expect(c.autoAttacking).toBe(true);
+    c.setTargeted(false);
+    expect(c.autoAttacking).toBe(false);
+    c.reset();
+    expect(c.targeted).toBe(false); // a fight reset keeps the selection
+  });
 });

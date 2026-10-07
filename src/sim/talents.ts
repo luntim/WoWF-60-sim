@@ -133,6 +133,7 @@ export function talentEffects(r: TalentRanks) {
     aggressionDamage: perRank(r, "aggression", 0.02),
     // Subtlety
     camouflageCooldown: byRank(r, "camouflage", [0, 2, 3, 4, 5, 6]),
+    camouflageSpeed: perRank(r, "camouflage", 0.03),
     opportunityDamage: perRank(r, "opportunity", 0.05),
     elusivenessCooldown: perRank(r, "elusiveness", 45),
     improvedAmbushCrit: perRank(r, "improvedAmbush", 15),
@@ -140,6 +141,7 @@ export function talentEffects(r: TalentRanks) {
     serratedArmorPen: perRank(r, "serratedBlades", 0.03),
     serratedRuptureDamage: perRank(r, "serratedBlades", 0.1),
     dirtyDeedsCost: perRank(r, "dirtyDeeds", 10),
+    garroteFromAnyAngle: has(r, "dirtyDeeds"),
     quietusDamage: perRank(r, "quietus", 0.02),
     cutthroatChance: perRank(r, "cutthroat", 0.03),
     thousandCuts: has(r, "thousandCuts"),

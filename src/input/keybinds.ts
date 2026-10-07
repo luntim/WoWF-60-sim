@@ -8,8 +8,8 @@ const STORAGE_KEY = "rogue-sim-keybinds-v1";
  */
 export type Binding = string;
 
-/** Keys the game uses itself and can't be bound. */
-export const RESERVED: Binding[] = ["Escape"];
+/** Keys the game uses itself and can't be bound: untarget/reset, target, jump, and movement (WASD + arrows). */
+export const RESERVED: Binding[] = ["Escape", "Tab", "Space", "KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
 const MODIFIER_CODES = new Set([
   "ShiftLeft",

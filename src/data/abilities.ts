@@ -1,6 +1,7 @@
 // Level-60 rogue abilities with WoW Forever values (top trained rank), from
 // https://www.wowhead.com/forever/spells/abilities/rogue. Raw tooltips: wowhead-rogue-forever.json.
 // Values marked ASSUMPTION are not stated on Wowhead and are borrowed from vanilla/TBC.
+import { MELEE_RANGE } from "../sim/positioning";
 
 export type AbilityId =
   | "mutilate"
@@ -42,6 +43,9 @@ export interface AbilityDef {
   requiresStealth?: boolean;
   requiresDagger?: boolean;
   requiresOutOfCombat?: boolean;
+  /** Max distance to the target in yards. Melee-range abilities also need you to face the target. */
+  range?: number;
+  requiresBehind?: boolean;
   /** Breaks stealth and starts auto-attacking. */
   offensive: boolean;
   /** Talent id that grants this ability; absent = trained. */
@@ -62,6 +66,10 @@ export const MAX_COMBO_POINTS = 5;
 export const MISS_REFUND = 0.8;
 export const OFFHAND_PENALTY = 0.5;
 export const STEALTH_COOLDOWN = 10;
+/** Run speed in yards/sec, backpedal speed, and Stealth's movement penalty. */
+export const RUN_SPEED = 7;
+export const BACKPEDAL_SPEED = 4.5;
+export const STEALTH_SPEED_PENALTY = 0.3;
 
 export const SPELL = {
   // Mutilate Rank 4 (spell 1241584)
@@ -120,6 +128,7 @@ export const POISONS = {
 export const ABILITIES: AbilityDef[] = [
   {
     id: "mutilate",
+    range: MELEE_RANGE,
     talent: "mutilate",
     name: "Mutilate",
     label: "Mut",
@@ -135,6 +144,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "eviscerate",
+    range: MELEE_RANGE,
     name: "Eviscerate",
     label: "Evis",
     icon: "ability_rogue_eviscerate",
@@ -164,6 +174,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "rupture",
+    range: MELEE_RANGE,
     name: "Rupture",
     label: "Rup",
     icon: "ability_rogue_rupture",
@@ -193,6 +204,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "exposeArmor",
+    range: MELEE_RANGE,
     name: "Expose Armor",
     label: "EA",
     icon: "ability_warrior_riposte",
@@ -207,6 +219,8 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "backstab",
+    range: MELEE_RANGE,
+    requiresBehind: true,
     name: "Backstab",
     label: "BS",
     icon: "ability_backstab",
@@ -218,10 +232,11 @@ export const ABILITIES: AbilityDef[] = [
     offensive: true,
     color: 0x5b6fd6,
     description:
-      "150% weapon damage plus 150. Requires a dagger in the main hand. Awards 1 combo point.",
+      "150% weapon damage plus 150. Must be behind the target. Requires a dagger in the main hand. Awards 1 combo point.",
   },
   {
     id: "sinisterStrike",
+    range: MELEE_RANGE,
     name: "Sinister Strike",
     label: "SS",
     icon: "spell_shadow_ritualofsacrifice",
@@ -249,6 +264,8 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "garrote",
+    range: MELEE_RANGE,
+    requiresBehind: true,
     name: "Garrote",
     label: "Gar",
     icon: "ability_rogue_garrote",
@@ -259,10 +276,12 @@ export const ABILITIES: AbilityDef[] = [
     requiresStealth: true,
     offensive: true,
     color: 0x7a2330,
-    description: "Requires Stealth. Bleed for 552 over 18 sec, increased by Attack Power. Awards 1 combo point.",
+    description: "Requires Stealth and being behind the target. Bleed for 552 over 18 sec, increased by Attack Power. Awards 1 combo point.",
   },
   {
     id: "ambush",
+    range: MELEE_RANGE,
+    requiresBehind: true,
     name: "Ambush",
     label: "Amb",
     icon: "ability_rogue_ambush",
@@ -274,7 +293,7 @@ export const ABILITIES: AbilityDef[] = [
     requiresDagger: true,
     offensive: true,
     color: 0x6a4bb8,
-    description: "Requires Stealth and a dagger. 250% weapon damage plus 290. Awards 1 combo point.",
+    description: "Requires Stealth, a dagger, and being behind the target. 250% weapon damage plus 290. Awards 1 combo point.",
   },
   {
     id: "stealth",
@@ -305,6 +324,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "kidneyShot",
+    range: MELEE_RANGE,
     name: "Kidney Shot",
     label: "KS",
     icon: "ability_rogue_kidneyshot",
@@ -347,6 +367,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "ghostlyStrike",
+    range: MELEE_RANGE,
     talent: "ghostlyStrike",
     name: "Ghostly Strike",
     label: "GS",
@@ -361,6 +382,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "hemorrhage",
+    range: MELEE_RANGE,
     talent: "hemorrhage",
     name: "Hemorrhage",
     label: "Hemo",
@@ -375,6 +397,7 @@ export const ABILITIES: AbilityDef[] = [
   },
   {
     id: "premeditation",
+    range: 20,
     talent: "premeditation",
     name: "Premeditation",
     label: "Pre",

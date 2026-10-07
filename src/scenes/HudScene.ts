@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 import { ABILITIES, MAX_COMBO_POINTS, type AbilityDef } from "../data/abilities";
 import { bindingFromEvent, formatBinding, type Keybinds } from "../input/keybinds";
+import type { UiPointer } from "../input/uiPointer";
 import type { Combat } from "../sim/Combat";
 import { HANDS } from "../sim/stats";
-import { DUMMY_X } from "./ArenaScene";
 import { FONT, MONO } from "./style";
 
 const SLOT_GAP = 6;
@@ -40,6 +40,10 @@ const BLOCKER_TEXT: Record<string, string> = {
   needsStealth: "Requires Stealth",
   needsDagger: "Requires a main-hand dagger",
   inCombat: "Can't do that while in combat",
+  outOfRange: "Out of range",
+  notFacing: "You are facing the wrong way!",
+  notBehind: "You must be behind your target",
+  noTarget: "You have no target",
   onCooldown: "Not ready yet",
   onGcd: "Not ready yet",
 };
@@ -51,8 +55,8 @@ export class HudScene extends Phaser.Scene {
   private comboPips: Phaser.GameObjects.Arc[] = [];
   private swingFills: Phaser.GameObjects.Rectangle[] = [];
   private buffText!: Phaser.GameObjects.Text;
+  private targetFrame!: Phaser.GameObjects.Container;
   private targetInfo!: Phaser.GameObjects.Text;
-  private debuffText!: Phaser.GameObjects.Text;
   private meterText!: Phaser.GameObjects.Text;
   private errorText!: Phaser.GameObjects.Text;
   private tooltip!: Phaser.GameObjects.Container;
@@ -65,6 +69,7 @@ export class HudScene extends Phaser.Scene {
   constructor(
     private combat: Combat,
     private keybinds: Keybinds,
+    private ui: UiPointer,
   ) {
     super({ key: "hud", active: true });
   }
@@ -77,14 +82,14 @@ export class HudScene extends Phaser.Scene {
   create(): void {
     const { width } = this.scale;
 
-    this.add.text(16, 12, "N talents · Esc resets · stats and keybinds in the side panel", {
+    this.add.text(16, 12, "WASD move · Space jump · right-drag look · click/Tab target · Esc untarget, again resets · N talents", {
       fontFamily: FONT,
       fontSize: "13px",
       color: "#8a90a0",
     });
 
     this.createPlayerFrame(16, 38);
-    this.createTargetFrame(DUMMY_X, 120);
+    this.createTargetFrame(290, 38);
 
     this.meterText = this.add
       .text(width - 16, 12, "", { fontFamily: MONO, fontSize: "13px", color: "#d5d9e2", align: "right" })
@@ -150,7 +155,9 @@ export class HudScene extends Phaser.Scene {
     const el = document.activeElement;
     if (this.keybinds.capturing || el instanceof HTMLInputElement || el instanceof HTMLSelectElement) return;
     if (e.code === "Escape") {
-      this.combat.reset();
+      // Esc clears the target first; with nothing targeted it resets the fight.
+      if (this.combat.targeted) this.combat.setTargeted(false);
+      else this.combat.reset();
       return;
     }
     const binding = bindingFromEvent(e);
@@ -208,25 +215,20 @@ export class HudScene extends Phaser.Scene {
     this.buffText.setText(c.playerBuffs.map((b) => `${b.name}${formatRemaining(b.remaining)}`));
   }
 
-  // ---- Target frame: dummy debuffs ----
+  // ---- Target frame: shown while the dummy is targeted (its debuffs are on the nameplate) ----
 
   private createTargetFrame(x: number, y: number): void {
-    this.add
-      .text(x, y - 60, "Training Dummy", { fontFamily: FONT, fontSize: "15px", fontStyle: "bold", color: "#e8d6b0" })
-      .setOrigin(0.5);
-    this.targetInfo = this.add.text(x, y - 42, "", { fontFamily: FONT, fontSize: "12px", color: "#8a90a0" }).setOrigin(0.5);
-    this.debuffText = this.add
-      .text(x, y - 24, "", { fontFamily: FONT, fontSize: "12px", color: "#c7e0a8", align: "center", lineSpacing: 1 })
-      .setOrigin(0.5, 0);
+    const name = this.add.text(x, y - 2, "Training Dummy", { fontFamily: FONT, fontSize: "15px", fontStyle: "bold", color: "#e8d6b0" });
+    this.targetInfo = this.add.text(x, y + 18, "", { fontFamily: FONT, fontSize: "12px", color: "#8a90a0" });
+    this.targetFrame = this.add.container(0, 0, [name, this.targetInfo]);
   }
 
   private updateTargetFrame(): void {
+    this.targetFrame.setVisible(this.combat.targeted);
+    if (!this.combat.targeted) return;
     const t = this.combat.config.target;
     this.targetInfo.setText(
       `Level ${t.level}${t.humanoid ? " Humanoid" : ""} · ${t.armor} armor`,
-    );
-    this.debuffText.setText(
-      this.combat.targetDebuffs.map((d) => `${d.name}${d.stacks ? ` ×${d.stacks}` : ""}${formatRemaining(d.remaining)}`),
     );
   }
 
@@ -303,7 +305,10 @@ export class HudScene extends Phaser.Scene {
     const errorRing = add(this.add.rectangle(x, y, size + 5, size + 5).setStrokeStyle(3, 0xff4040).setAlpha(0));
 
     const slot: Slot = { ability, x, y, size, parts, costText, sweep, dim, label, keyText, cdText, frame, queueRing, errorRing, button };
-    hitArea.on("pointerdown", () => this.press(slot));
+    hitArea.on("pointerdown", () => {
+      this.ui.claim();
+      this.press(slot);
+    });
     hitArea.on("pointerover", () => this.showTooltip(slot));
     hitArea.on("pointerout", () => this.tooltip.setVisible(false));
     return slot;
@@ -340,7 +345,10 @@ export class HudScene extends Phaser.Scene {
       slot.sweep.fillPath();
     }
 
-    slot.dim.setVisible(this.combat.unusableReason(slot.ability) !== null);
+    // WoW-style: red when out of range or facing away, dark when otherwise unusable.
+    const reason = this.combat.unusableReason(slot.ability);
+    const positional = reason === "outOfRange" || reason === "notFacing" || reason === "notBehind";
+    slot.dim.setVisible(reason !== null).setFillStyle(positional ? 0x9a1010 : 0x10121a, positional ? 0.5 : 0.6);
     slot.costText?.setText(`${this.combat.cost(slot.ability)}`);
 
     const cd = this.combat.cooldownRemaining(slot.ability.id);

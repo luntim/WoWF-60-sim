@@ -10,10 +10,12 @@ import {
   POISONS,
   SPELL,
   STEALTH_COOLDOWN,
+  STEALTH_SPEED_PENALTY,
   type AbilityDef,
   type AbilityId,
 } from "../data/abilities";
 import { Meter } from "./Meter";
+import { IN_POSITION, MELEE_RANGE, type Positioning } from "./positioning";
 import { HANDS, HIT_TABLES, armorMultiplier, type Hand, type HitTable, type SimConfig, type Weapon } from "./stats";
 import { rankOf, talentEffects, type TalentEffects } from "./talents";
 
@@ -36,6 +38,7 @@ export type CombatEvent =
       hand?: Hand;
     }
   | { type: "stealth"; active: boolean }
+  | { type: "target"; active: boolean }
   | { type: "reset" };
 
 export type UseResult =
@@ -48,6 +51,10 @@ export type UseResult =
   | "needsStealth"
   | "needsDagger"
   | "inCombat"
+  | "noTarget"
+  | "outOfRange"
+  | "notFacing"
+  | "notBehind"
   | "notLearned"
   | "unknown";
 
@@ -78,9 +85,21 @@ interface Dot {
   interval: number;
 }
 
-interface StatusEntry {
+/** Debuff icons (Wowhead icon names) for the nameplate. */
+export const DEBUFF_ICONS: Record<string, string> = {
+  deadly: "ability_rogue_dualweild",
+  rupture: "ability_rogue_rupture",
+  garrote: "ability_rogue_garrote",
+  exposeArmor: "ability_warrior_riposte",
+  hemorrhage: "spell_shadow_lifedrain",
+  kidneyShot: "ability_rogue_kidneyshot",
+};
+
+export interface StatusEntry {
   id: string;
   name: string;
+  /** Wowhead icon name (debuffs only). */
+  icon?: string;
   /** Seconds; Infinity for until-used buffs. */
   remaining: number;
   stacks?: number;
@@ -113,6 +132,10 @@ export class Combat {
   fx: TalentEffects;
   /** Abilities this build can use (trained + talented). */
   abilities: AbilityDef[] = [];
+  /** Reported each frame by the 3D world; defaults to standing right behind the dummy. */
+  position: Positioning = { ...IN_POSITION };
+  /** Whether the dummy is selected. Survives fight resets; the game starts untargeted. */
+  targeted = true;
 
   private nextEnergyTick = 0;
   private gcdEnd = 0;
@@ -177,6 +200,30 @@ export class Combat {
     this.emit({ type: "reset" });
   }
 
+  setPositioning(p: Positioning): void {
+    this.position = p;
+  }
+
+  /** Select or clear the target. Clearing it stops auto-attacks and drops a queued press, as in WoW. */
+  setTargeted(on: boolean): void {
+    if (this.targeted === on) return;
+    this.targeted = on;
+    if (!on) {
+      this.autoAttacking = false;
+      this.queued = null;
+    }
+    this.emit({ type: "target", active: on });
+  }
+
+  /** Movement speed multiplier: Stealth slows you, Camouflage reduces the penalty. */
+  get speedMultiplier(): number {
+    return this.stealthed ? 1 - Math.max(0, STEALTH_SPEED_PENALTY - this.fx.camouflageSpeed) : 1;
+  }
+
+  get inMeleeRange(): boolean {
+    return this.targeted && this.position.distance <= MELEE_RANGE && this.position.facing;
+  }
+
   get maxEnergy(): number {
     return BASE_MAX_ENERGY + this.fx.vigorEnergy;
   }
@@ -204,10 +251,16 @@ export class Combat {
     this.tickDots();
     this.tickSwings(dt);
 
-    if (this.queued && this.blocker(this.queued) === "ok") {
-      const ability = this.queued;
-      this.queued = null;
-      this.execute(ability);
+    if (this.queued) {
+      const blocker = this.blocker(this.queued);
+      if (blocker === "ok") {
+        const ability = this.queued;
+        this.queued = null;
+        this.execute(ability);
+      } else if (!QUEUEABLE.has(blocker)) {
+        // Walked out of range or turned away: a queued press shouldn't fire later by surprise.
+        this.queued = null;
+      }
     }
   }
 
@@ -269,7 +322,8 @@ export class Combat {
   unusableReason(ability: AbilityDef): Blocker | null {
     if (ability.id === "stealth" && this.stealthed) return null;
     const b = this.blocker(ability);
-    return b === "ok" || b === "onCooldown" || b === "onGcd" ? null : b;
+    // WoW doesn't grey out buttons for having no target; pressing one just says so.
+    return b === "ok" || b === "onCooldown" || b === "onGcd" || b === "noTarget" ? null : b;
   }
 
   get queuedAbility(): AbilityDef | null {
@@ -292,6 +346,10 @@ export class Combat {
   }
 
   get targetDebuffs(): StatusEntry[] {
+    return this.debuffList().map((d) => ({ ...d, icon: DEBUFF_ICONS[d.id] }));
+  }
+
+  private debuffList(): StatusEntry[] {
     const list: StatusEntry[] = [];
     if (this.deadly) {
       list.push({ id: "deadly", name: "Deadly Poison", remaining: this.deadly.end - this.time, stacks: this.deadly.stacks });
@@ -343,6 +401,11 @@ export class Combat {
     const cutthroatAmbush = a.id === "ambush" && this.buffs.has("cutthroat");
     if (a.requiresStealth && !this.stealthed && !cutthroatAmbush) return "needsStealth";
     if (a.requiresDagger && this.weapon("mh").type !== "dagger") return "needsDagger";
+    if (a.range !== undefined && !this.targeted) return "noTarget";
+    if (a.range !== undefined && this.position.distance > a.range) return "outOfRange";
+    if (a.range === MELEE_RANGE && !this.position.facing) return "notFacing";
+    const anyAngle = a.id === "garrote" && this.fx.garroteFromAnyAngle;
+    if (a.requiresBehind && !this.position.behind && !anyAngle) return "notBehind";
     if (this.cooldownRemaining(a.id) > 0) return "onCooldown";
     if (a.triggersGcd && this.gcdRemaining() > 0) return "onGcd";
     if (this.energy < this.cost(a)) return "noEnergy";
@@ -679,9 +742,9 @@ export class Combat {
     const flurry = this.buffs.has("bladeFlurry") ? 1 + SPELL.bladeFlurry.haste : 1;
     const haste = snd * flurry;
     for (const hand of HANDS) {
-      // The swing timer keeps running while not attacking but holds at "ready".
+      // The swing timer keeps running while not attacking (or out of reach) but holds at "ready".
       this.swing[hand] += (dt * haste) / this.weapon(hand).speed;
-      if (!this.autoAttacking) {
+      if (!this.autoAttacking || !this.inMeleeRange) {
         this.swing[hand] = Math.min(this.swing[hand], 1);
       } else if (this.swing[hand] >= 1) {
         this.swing[hand] = Math.min(this.swing[hand] - 1, 1);

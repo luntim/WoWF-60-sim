@@ -24,8 +24,24 @@ body {
 }
 
 #game {
+  position: relative;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* The 3D world fills the area; Phaser's HUD canvas sits on top, letterboxed to 16:9. */
+#game canvas.world {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#game canvas:not(.world) {
+  position: relative;
+  z-index: 1;
 }
 
 #panel {
@@ -67,6 +83,17 @@ body {
 
 #panel label.check {
   justify-content: flex-start;
+}
+
+#panel label.stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+#panel input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
 }
 
 #panel input:not([type="checkbox"]),
